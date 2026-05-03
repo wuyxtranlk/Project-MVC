@@ -1,0 +1,29 @@
+﻿<h1>Đây là index của ProductController</h1>
+<table class="border">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Photo</th>
+			<th>Mfg</th>
+			<th>Status</th>
+			<th>Price</th>
+			<th>Quantity</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var product in ViewBag.Products)
+		{
+			<tr>
+				<td>@product.Id</td>
+				<td>@product.Name</td>
+				<td><img src="~/img/@product.Photo" alt="" width="50" /> </td>
+				<td>@(product.Mfg.ToString("yyyy/MM/dd"))</td>
+				<td>@(product.Status ? "Valuable" : "N/A")</td>
+				<td>@product.Price</td>
+				<td>@product.Quantity</td>
+				<td>@(product.Price* product.Quantity)</td>
+			</tr>
+		}
+	</tbody>
+</table>

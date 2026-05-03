@@ -1,0 +1,23 @@
+{
+  "version": "3.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap@5.3.8",
+      "destination": "wwwroot/bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "css/bootstrap.min.css"
+      ]
+    },
+    {
+      "library": "flatpickr@4.6.13",
+      "destination": "wwwroot/flatpickr/",
+      "files": [
+        "flatpickr.min.js",
+        "flatpickr.min.css",
+        "l10n/vn.min.js"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+﻿<hr />
+@if (ViewBag.Dob != null)
+{
+	<p>Ngày tháng năm bạn chọn là: @ViewBag.Dob.ToString("dd/MM/yyyy")</p>
+} else
+{
+	<p>Bạn chưa chọn ngày tháng năm nào: @ViewBag.Error</p>
+}

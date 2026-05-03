@@ -1,0 +1,135 @@
+﻿@using StageSix.ViewModels.Product
+@* @model Product *@
+@model ProductViewModel
+<link href="~/flatpickr/flatpickr.min.css" rel="stylesheet" />
+<script defer src="~/flatpickr/flatpickr.min.js" asp-append-version="true"></script>
+<script defer src="~/flatpickr/l10n/vn.min.js" asp-append-version="true"></script>
+<script defer src="~/js/init-flatpickr.js" asp-append-version="true"></script>
+
+<h1>Đây là view của FormController</h1>
+<hr />
+
+@*dùng html thuần*@
+<form action="/form/show-name">
+	<fieldset style="width:fit-content">
+		<legend>1) Form từ html thuần</legend>
+		<label for="fullname">Full Name: </label>
+		<input type="text" name="fullname" id="name" />
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+
+@*Dùng tag helpers*@
+<form asp-controller="Form" asp-action="ShowName" method="get">
+	<fieldset style="width:fit-content">
+		<legend>2) Form từ tag helpers</legend>
+		<label for="fullname">Full Name: </label>
+		<input type="text" name="fullname" id="name" />
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+
+@*Dùng tag helpers*@
+<form asp-controller="Form" asp-action="ShowNameAndQuantity" method="get">
+	<fieldset style="width:fit-content">
+		<legend>3) Form từ tag helpers dùng ViewBag ....</legend>
+		<label for="fullname">Full Name: </label>
+		<input type="text" name="fullname" id="name"/>
+		<label for="quantity">Quantity: </label>
+		<input type="text" name="quantity" id="quantity" />
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+
+@*Dùng tag helpers Request.Query chỉ dùng khi method get khi dùng thì action không cần truyền tham số mà tự bóc tách trên addressbar vào*@
+<form asp-controller="Form" asp-action="ShowNameAndQuantityByRequestQuery" method="get">
+	<fieldset style="width:fit-content">
+		<legend>4) Form từ tag helpers dùng Request Query ....</legend>
+		<label for="fullname">Full Name: </label>
+		<input type="text" name="fullname" id="name"/>
+		<label for="quantity">Quantity: </label>
+		<input type="text" name="quantity" id="quantity" />
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+
+@*Dùng tag helpers Request.Form chỉ dùng khi method port khi dùng thì action không cần truyền tham số mà tự bóc tách trong body của request vào*@
+<form asp-controller="Form" asp-action="ShowNameAndQuantityByRequestForm" method="post">
+	<fieldset style="width:fit-content">
+		<legend>5) Form từ tag helpers dùng Request Form ....</legend>
+		<label for="fullname">Full Name: </label>
+		<input type="text" name="fullname" id="name"/>
+		<label for="quantity">Quantity: </label>
+		<input type="text" name="quantity" id="quantity" />
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+@*Dùng model theo dạng model binding thì tên của input phải trùng với tên của properties trong model, dùng asp-for cho việc này*@
+<form asp-controller="Form" asp-action="ShowProduct" method="post">
+	<fieldset style="width:fit-content">
+		<legend>6) Form từ tag helpers dùng Model là Product</legend>
+		<label asp-for="Name">Full Name: </label>
+		<input asp-for="Name"/>
+		<label asp-for="Quantity">Quantity: </label>
+		<input asp-for="Quantity" />
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+@*dùng view model dùng thuộc tính ít hơn model cho view*@
+<form asp-controller="Form" asp-action="ShowProductVM" method="post">
+	<fieldset style="width:fit-content">
+		<legend>7) Form từ tag helpers dùng ViewModel</legend>
+		<label asp-for="Name">Full Name: </label>
+		<input asp-for="Name"/>
+		<label asp-for="Quantity">Quantity: </label>
+		<input asp-for="Quantity" />
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+
+
+@*đôi khi thuộc tính name bị trùng tên*@
+<form asp-controller="Form" asp-action="ShowHobbies" method="post">
+	<fieldset style="width:fit-content">
+		<legend>8) Form từ tag helpers trùng thuộc tính name</legend>
+		<input type="checkbox" name="hobbies" value="reading" /> Reading
+		<input type="checkbox" name="hobbies" value="traveling" /> Traveling
+		<input type="checkbox" name="hobbies" value="cooking" /> Cooking 
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+@*đôi khi thuộc tính name bị trùng tên dùng for để tạo*@
+<form asp-controller="Form" asp-action="ShowEmails" method="post">
+	<fieldset style="width:fit-content">
+		<legend>9) Form từ tag helpers trùng thuộc tính name</legend>
+		@for (int i = 0; i < 5; i++)
+		{
+			<div>
+				Emails: 
+				<input type="text" name="emails" />
+			</div>
+		}
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+@*dùng date*@
+<form asp-controller="Form" asp-action="ShowDate" method="post">
+	<fieldset style="width:fit-content">
+		<legend>10) Form từ tag helpers dùng date</legend>
+		<label for="dob">Date of Birthday</label>
+		<input type="text" id="dob" name="dob"/>
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>
+
+@*dùng date start ... end*@
+<form asp-controller="Form" asp-action="ShowDateStartEnd" method="post">
+	<fieldset style="width:fit-content">
+		<legend>11) Form từ tag helpers dùng date start - date end</legend>
+		<label for="startdate">Ngày đi: </label>
+		<input type="text" id="startdate" name="startdate" />
+		<label for="enddate">Ngày về: </label>
+		<input type="text" id="enddate" name="enddate" />
+		<button type="submit">Submit</button>
+	</fieldset>
+</form>

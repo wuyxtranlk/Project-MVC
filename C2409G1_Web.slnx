@@ -1,0 +1,29 @@
+<Solution>
+  <Folder Name="/_000/" />
+  <Folder Name="/_000/Note/">
+    <File Path="NoteASPNet.txt" />
+  </Folder>
+  <Folder Name="/_001/">
+    <Project Path="StageOne/StageOne.csproj" />
+  </Folder>
+  <Folder Name="/_002/">
+    <Project Path="StageTwo/StageTwo.csproj" Id="41a7b18b-f4c1-4723-ae4e-e3fadbbcc239" />
+  </Folder>
+  <Folder Name="/_003/">
+    <Project Path="StageThree/StageThree.csproj" Id="832e92ed-1db6-4270-841f-53ffeba3a772" />
+  </Folder>
+  <Folder Name="/_004/">
+    <Project Path="StageFour/StageFour.csproj" Id="0859f08a-f217-477c-9393-da6dd95f3194" />
+  </Folder>
+  <Folder Name="/_005/">
+    <Project Path="StageFive/StageFive.csproj" Id="f7041706-9598-439f-85cd-7b5b5c796558" />
+  </Folder>
+  <Folder Name="/_006 tag helper/">
+    <Project Path="StageSix/StageSix.csproj" Id="c9d887d4-8ddb-4341-98e5-f9df40a5dc66" />
+  </Folder>
+  <Folder Name="/_007/">
+    <File Path="GlobalUsing.cs" />
+    <File Path="Note.txt" />
+    <Project Path="StageSeven/StageSeven.csproj" Id="463cc15a-db9d-4b53-b98b-afc93855513e" />
+  </Folder>
+</Solution>

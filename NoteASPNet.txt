@@ -1,0 +1,27 @@
+Trong C# có mấy phím tắt nên biết khi học web:
+	- Ctrl + . : gợi ý code, nhắc nhở code
+	- Alt + . hoặc alt + , : nhờ AI gợi ý code tiếp theo là gì
+	- Alt + F1: cho phép coi sử dụng var là gì, gợi ý các tham số trong phương thức của C# có sẵn
+	- Ctrl + / : comment code
+=========================================================
+endpoint: hiểu đơn giản là địa chỉ truy cập cụ thể trong web, bao gồm:
+1) http method(GET, POST, PUT, DELETE,..) method xác định hành động của endpoint. 
+2) URL (Uniform Resource Locator) địa chỉ cụ thể để truy cập vào website.
+3) Handler: code xử lý đc gọi.
+
+middleware: là phần mềm trung gian giữa hệ điều hành và ứng dụng, giúp quản lý và xử lý các yêu cầu từ client đến server. Middleware có thể thực hiện các chức năng như xác thực, logging, xử lý lỗi, và nhiều hơn nữa trước khi yêu cầu được gửi đến endpoint cụ thể.
+=======================================
+www.google.com:
+=> www.gogle.com/home/search
+=> www.google.com/controller/action
+
+1) Khi tạo controller nào thì view mặc định sẽ có thư mục tên của controller đó
+2) Action trong controller sẽ tương ứng với view có tên giống action đó
+3) wwwroot: thư mục góc chứa các file tĩnh như hình ảnh, css, js,... được sử dụng trong ứng dụng web. Khi người dùng truy cập URL, máy chủ sẽ tìm kiếm các file trong thư mục để phục vụ nội dung cho người dùng.
+
+4) ViewBag: là một đối tượng động trong ASP.NET MVC, cho phép bạn truyền dữ liệu từ controller đến view một cách linh hoạt mà không cần phải định nghĩa trước kiểu dữ liệu. Bạn có thể gán bất kỳ giá trị nào vào ViewBag và truy cập nó trong view để hiển thị thông tin hoặc thực hiện các thao tác khác. Ví dụ:
+5) Strongly-typed View(viewmodel) tương tự viewbag: là một loại view trong ASP.NET MVC mà bạn có thể sử dụng để truyền dữ liệu từ controller đến view một cách an toàn về kiểu dữ liệu. Khi bạn tạo một strongly-typed view, bạn sẽ chỉ định kiểu dữ liệu cụ thể mà view sẽ nhận, giúp tránh lỗi khi truy cập các thuộc tính hoặc phương thức của đối tượng trong view. Ví dụ:
+
+6) Covention route(theo quy ước) và Attribute route(theo thuộc tính): 
+- Covention route: nằm ở program.cs, định nghĩa các quy tắc chung cho tất cả các route trong ứng dụng. Ví dụ: localhost:xxxx/{controller}/{action}/{id?} => nhanh, gọn, lẹ
+- Attribute route: được định nghĩa trực tiếp trên các controller hoặc action bằng cách sử dụng các thuộc tính như [Route("path")] => linh hoạt, dễ hiểu, dễ bảo trì, nhưng chậm hơn convention route khi chỉnh sửa vì phải vào từng controller để chỉnh sửa, không thể sửa hàng loạt như convention route.

@@ -1,0 +1,55 @@
+﻿<link href="~/css/style.css" rel="stylesheet" />
+<script src="~/js/script.js" defer></script>
+<h1>Account Page<h1/>
+<p>Học cú phép Razor engine(C#) để tương tác với các thẻ trong html</p>
+@*
+	1) dùng để ghi chứ trong file cshtml, nó sẽ không hiển thị ra ngoài trình duyệt
+	2) @{}: dùng để viết C# trong file cshtml
+	3) các câu lệnh if, for, foreach, switch, while,... dùng trực tiếp mà không cần phải đặt trong @{}
+	ví dụ @if, @for, @foreach, @switch, @while,...
+	4) @tênbiến : dùng để hiển thị giá trị của biến
+	5) @(): dùng để hiển thị giá trị, hay tính toán của biểu thức C#
+*@
+
+	@{
+		var id = "student001";
+		var name = "Nguyen Van A";
+		var age = 2000;
+		var gender = true;
+		List<string> hobbies = new List<string>() { "Football", "Music", "Traveling" };
+		var pic = Url.Content("~/img/1.gif");
+		var photo = "/img/2.gif;";
+		var image = "3.gif";
+	}
+
+<table class="border">
+    <tr>
+        <td>
+			@id
+		</td>
+        <td>
+			@name
+		</td>
+        <td>
+			@(DateTime.Now.Year - age)
+		</td>
+        <td>
+			@(gender?"male":"female")
+		</td>
+		<td>
+			@foreach(var i in hobbies) 
+			{
+				<span>@i</span>		
+			}
+			</td>
+        <td>
+			<img src="~/img/3.gif" alt="" width="50"/>
+		</td>
+        <td>
+			<img src="@pic" alt="@name" width="50" id="avatar" />
+		</td>
+        <td>
+			<img src="~/img/@image" alt="@name" width="50" id="avatar" />
+		</td>
+    </tr>
+</table>

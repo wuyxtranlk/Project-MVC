@@ -1,0 +1,36 @@
+﻿@using StageSeven.Models
+@model Product
+@{
+	ViewBag.Title = "Product Details";
+}
+<div class="container">
+	<h2>Chỉnh sửa sản phẩm</h2>
+	<div class="table-responsive">
+		<table class="table table-hover table-bordered table-striped">
+			<thead class="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Photo</th>
+					<th>Mfg</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@Model.Id</td>
+					<td>@Model.Name</td>
+					<td><img src="~/img/@Model.Photo" alt="Photo" width="50" /></td>
+					<td>@Model.Mfg.ToString("dd/MM/yyyy")</td>
+					<td>@Model.Quantity</td>
+					<td>@Model.Price</td>
+					<td>@(Model.Status ? "Active" : "InActive")</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<a asp-controller="Product" asp-action="Index">Back to san-pham</a>
+</div>
+

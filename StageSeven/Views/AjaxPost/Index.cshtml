@@ -1,0 +1,82 @@
+﻿@{
+	ViewBag.Title = "AjaxPost Index";
+}
+<h1>Đây là view index của AjaxPostController</h1>
+
+<input type="text" id="txtName" value="" placeholder="Enter your name..." />
+<button type="button" id="btnSend">Enter</button>
+<p id="resultName"></p>
+
+<hr />
+<label for="Fullname">
+	Fullname:
+	<input type="text" id="txtFullname" value="" placeholder="Enter your name..." />
+</label>
+<label for="Age">
+	Age:
+	<input type="text" id="txtAge" value="" placeholder="Enter your age...." />
+</label>
+<button type="button" id="btnSendPerson">Enter</button>
+<p id="resultPerson"></p>
+
+@section Scripts {
+	<script>
+		document.getElementById("btnSend").addEventListener("click", 
+		async () => {
+			const name = document.getElementById("txtName").value;
+			try {
+				const response = await fetch('/AjaxPost/get-name', {
+					method: 'POST',
+					headers: {
+						"Content-Type": "application/json; charset=UTF-8"
+					},
+					body: JSON.stringify(name)
+				});
+				const data = await response.json();
+				document.getElementById("resultName").textContent = data.fullname;
+			} catch (error) {
+				console.error('Error:', error);
+			}
+		});
+
+		document.getElementById("btnSendPerson").addEventListener("click", 
+		async () => {
+			var checkname = document.getElementById("txtFullname").value
+			var checkage = document.getElementById("txtAge").value
+
+			if(!checkname) {
+				document.getElementById("resultPerson").innerHTML = "<b style='color:red'>Please enter a valid name.</b>";
+				return;
+			}
+
+			if(!/^\d+$/.test(checkage)) {
+				document.getElementById("resultPerson").innerHTML = "<b style='color:red'>Please enter a valid age must be a number.</b>";
+				return;
+			}
+			var ageValue = parseInt(checkage);
+			if(ageValue < 0 || ageValue > 120) {
+				document.getElementById("resultPerson").innerHTML = "<b style='color:red'>Please enter a valid age between 0 and 120.</b>";
+				return;
+			}
+
+			const person = 
+			{ 
+				Name: checkname || '',
+				Age: ageValue || 0
+			};
+			try {
+				const response = await fetch('/AjaxPost/get-person', {
+					method: 'POST',
+					headers: {
+						"Content-Type": "application/json; charset=UTF-8"
+					},
+					body: JSON.stringify(person)
+				});
+				const data = await response.json();
+				document.getElementById("resultPerson").textContent = `Name: ${data.fullname}, Age: ${data.age}`;
+			} catch (error) {
+				console.error('Error:', error);
+			}
+		});
+	</script>
+}

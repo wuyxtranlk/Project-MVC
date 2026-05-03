@@ -1,0 +1,35 @@
+﻿@*khai báo model cần lấy dữ liệu*@
+@using StageThree.Models
+@model Product
+
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<div class="container mt-4">
+	<h1 style="text-align: center">@ViewData["Title"]</h1>
+	@* <h2>@((double)ViewData["Price"] * @(int)ViewData["Quantity"])</h2> *@
+	<div class="table-responsive">
+		<table class="table table-bordered table-striped table-hover">
+			<thead class="text-bg-dark">
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Photo</th>
+					<th>Status</th>
+					<th>Mfg</th>
+					<th>Price</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@Model.Id</td>
+					<td>@Model.Name</td>
+					<td><img src="~/img/@Model.Photo" alt="Alternate Text" width="50"/></td>
+					<td>@Model.Mfg</td>
+					<td>@Model.Status</td>
+					<td>@Model.Price</td>
+					<td>@Model.Quantity</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

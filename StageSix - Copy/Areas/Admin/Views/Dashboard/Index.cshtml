@@ -1,0 +1,5 @@
+﻿<h1>Đây là admin page @User?.Identity?.Name</h1> 
+<p>chỉ có admin mới có thể truy cập</p>
+<form method ="post" asp-controller="Account" asp-action="Logout">
+	<button type="submit">Logout</button>
+</form>

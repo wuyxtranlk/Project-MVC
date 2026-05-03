@@ -1,0 +1,29 @@
+﻿@{
+	ViewBag.Title = "Ajax Api Index";
+}
+<button id="btnMessageJsonAsync" data-url="@Url.RouteUrl("MessageJsonAsync")">Get Message</button>
+<p id="resultJsonAsync"></p>
+<hr />
+<input type="text" id="txtName" value="" placeholder="Enter your name..." />
+<button type="button" id="btnGetNameQuery" data-url-template="@Url.RouteUrl("GetNameQuery", new { name = "__name__" })">Enter</button>
+<p id="resultName"></p>
+<hr />
+<fieldset>
+	<label for="Fullname"></label>
+	<legend>Fullname</legend>
+	<input type="text" id="txtFullname" value="" placeholder="Enter your name..." />
+</fieldset>
+	
+<fieldset>
+	<label for="Age"></label>
+	<legend>Age</legend>
+	<input type="text" id="txtAge" value="" placeholder="Enter your age...." />
+</fieldset>
+	
+<button type="button" id="btnSendPerson" data-url="@Url.RouteUrl("GetPerson")">Enter</button>
+<p id="resultPerson"></p>
+@section scripts{
+	<script type="module" src="/js/ajax-api/message-json-async.js"></script>
+	<script type="module" src="/js/ajax-api/get-name-query.js"></script>
+	<script type="module" src="/js/ajax-api/get-person.js"></script>
+}

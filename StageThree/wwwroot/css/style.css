@@ -1,0 +1,19 @@
+﻿* {
+    margin : 0;
+    padding: 0;
+}
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+table.border {
+    border-collapse: collapse;
+}
+table.border th, table.border td {
+    border: 1px solid blue;
+    padding: 8px;
+}
+        table.border td[colspan] {
+            font-weight : bold;
+            text-align : right;
+        }

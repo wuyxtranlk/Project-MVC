@@ -1,0 +1,5 @@
+Khi nào sử dụng đến bất đồng bộ: 
+	- Khi liên quan đến I/O (đọc/ghi file, gọi API, truy vấn database,...)
+	- Khi liên quan đến Database: Sử dụng async/await để thực hiện các truy vấn cơ sở dữ liệu một cách hiệu quả, tránh làm tắc nghẽn luồng chính của ứng dụng.
+	- Khi liên quan đến thread và task: Sử dụng async/await để quản lý các tác vụ bất đồng bộ, giúp tối ưu hóa hiệu suất và tránh tình trạng deadlock.
+	- Khi liên quan đến Memory: Sử dụng async/await để giảm thiểu việc sử dụng bộ nhớ và tăng hiệu suất của ứng dụng, đặc biệt khi xử lý các tác vụ nặng về CPU hoặc I/O.

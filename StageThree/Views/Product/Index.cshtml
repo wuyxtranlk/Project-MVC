@@ -1,0 +1,50 @@
+﻿@using StageThree.Models
+<link href="~/css/style.css" rel="stylesheet" />
+@*
+	để dùng model trong view thì phải khai báo @using StageThree.Models ở đầu file, nếu không sẽ bị lỗi
+*@
+@{
+	List<Product> list = [
+		new Product { Id = 1, Name = "Product 1", Price = 10.0, Quantity = 5, Status = true, Mfg = DateTime.Now, Photo = "hinh1.gif" },
+		new Product { Id = 2, Name = "Product 2", Price = 20.0, Quantity = 3, Status = false, Mfg = DateTime.Now, Photo = "hinh2.gif" },
+		new Product { Id = 3, Name = "Product 3", Price = 15.0, Quantity = 8, Status = true, Mfg = DateTime.Now, Photo = "hinh3.gif" },
+		
+	];
+}
+<table class="border">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Photo</th>
+			<th>Mfg</th>
+			<th>Status</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Line Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in list)
+		{
+			<tr>
+				<td>@item.Id</td>
+				<td>@item.Name</td>
+				<td><img src="~/img/@item.Photo" alt="" width="50" /> </td>
+				<td>@(item.Mfg.ToString("yyyy/MM/dd"))</td>
+				<td>@(item.Status ? "Valuable" : "N/A")</td>
+				<td>@item.Price</td>
+				<td>@item.Quantity</td>
+				<td>@(item.Price* item.Quantity)</td>
+			</tr>
+		}
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="6">Total</td>
+			<td>@list.Sum(p => p.Quantity)</td>
+			<td>@list.Sum(p => p.Price * p.Quantity)</td>
+		</tr>
+	</tfoot>
+</table>
+

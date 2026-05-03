@@ -1,0 +1,32 @@
+﻿@using StageFive.Models
+
+@model IEnumerable<Product>
+
+<table class="border">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Photo</th>
+			<th>Mfg</th>
+			<th>Status</th>
+			<th>Price</th>
+			<th>Quantity</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var pro in Model)
+		{
+			<tr>
+				<td>@pro.Id</td>
+				<td>@pro.Name</td>
+				<td><img src="~/img/@pro.Photo" alt="" width="50" /> </td>
+				<td>@(pro.Mfg.ToString("yyyy/MM/dd"))</td>
+				<td>@(pro.Status ? "Valuable" : "N/A")</td>
+				<td>@pro.Price</td>
+				<td>@pro.Quantity</td>
+				<td>@(pro.Price* pro.Quantity)</td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,21 @@
+﻿<h1>đây là view index của action index của upload controller</h1>
+
+@if(TempData["Error"] != null)
+{
+    <div>
+        @TempData["Error"]
+    </div>
+}
+@if(TempData["Success"] != null)
+
+{
+    <div>@TempData["Success"]</div>
+}
+
+<form asp-controller="Upload" asp-action="UploadFiles" method="post" enctype="multipart/form-data">
+    <fieldset style="width:fit-content">
+        <legend>upload file</legend>
+        <input type="file" name="files" multiple  accept="image/*"/>
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>

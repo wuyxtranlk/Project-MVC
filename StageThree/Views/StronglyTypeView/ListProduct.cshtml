@@ -1,0 +1,47 @@
+﻿@*
+    View nhận cái gì thì bên đây khai báo cái đó do truyển cái list thì nhận cái list nhưng nên dùng IEnumerable để có thể linh hoạt hơn, thay vì dùng list thì dùng ienumerable để có thể nhận được cả list và array
+*@
+@using StageThree.Models
+@model IEnumerable<Product>
+
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<div class="container mt-4">
+    <h1 class="text-center">Review Strongly Type View</h1>
+    <h2>@if (TempData["Title"] != null)
+        {
+			<span class="text-success">@TempData["Title"]</span>
+        } else
+        {
+			<span class="text-danger">No Title</span>
+        }
+    </h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Photo</td>
+                    <td>Status</td>
+                    <td>Mfg</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td><img src="~/img/@item.Photo" alt="@item.Name" width="50"/></td>
+                        <td>@item.Status</td>
+                        <td>@item.Mfg</td>
+                        <td>@item.Price</td>
+                        <td>@item.Quantity</td>
+                    </tr>
+				}
+            </tbody>
+        </table>
+    </div>
+</div>

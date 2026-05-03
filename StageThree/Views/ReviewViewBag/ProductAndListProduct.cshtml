@@ -1,0 +1,42 @@
+﻿<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<div class="container mt-4">
+    <h1 class="text-center">Review ViewBag</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Photo</td>
+                    <td>Status</td>
+                    <td>Mfg</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@ViewBag.Product.Id</td>
+                    <td>@ViewBag.Product.Name</td>
+                    <td><img src="~/img/@ViewBag.Product.Photo" alt="@ViewBag.Product.Name" width="50" /></td>
+                    <td>@ViewBag.Product.Status</td>
+                    <td>@ViewBag.Product.Mfg</td>
+                    <td>@ViewBag.Product.Price</td>
+                    <td>@ViewBag.Product.Quantity</td>
+                </tr>
+                @foreach (var pro in ViewBag.ListProduct)
+                {
+                   <tr>
+                        <td>@pro.Id</td>
+                        <td>@pro.Name</td>
+                        <td><img src="~/img/@pro.Photo" alt="@pro.Name" width="50" /></td>
+                        <td>@pro.Status</td>
+                        <td>@pro.Mfg</td>
+                        <td>@pro.Price</td>
+                        <td>@pro.Quantity</td>
+                   </tr>   
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

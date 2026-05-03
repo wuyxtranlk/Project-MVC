@@ -1,0 +1,4 @@
+﻿@model string
+<h1>Đây là action Show Name của formcontroller</h1>
+<p>Fullname: @(string.IsNullOrWhiteSpace(Model) ? "Empty" : Model)</p>
+<a asp-controller="form" asp-action="index" >Quay lại index</a>

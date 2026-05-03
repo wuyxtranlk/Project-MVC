@@ -1,0 +1,39 @@
+﻿@*
+    gọi viewbag trong view thì dùng cú pháp @ViewBag.TênThuộcTính
+*@
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<h1>@ViewBag.Message</h1>
+<div class="container mt-4">
+    <h1 class="text-center">Review ViewBag</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <caption>@ViewBag.Message</caption>
+            <thead class="table-dark">
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Photo</td>
+                    <td>Status</td>
+                    <td>Mfg</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Array</td>
+                    <td>Anonymous</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@ViewBag.Id</td>
+                    <td>@ViewBag.Name</td>
+                    <td><img src="~/img/@ViewBag.Photo" alt="@ViewBag.Name" width="@ViewBag.Width"/></td>
+                    <td>@ViewBag.Status</td>
+                    <td>@ViewBag.Mfg</td>
+                    <td>@ViewBag.Price</td>
+                    <td>@ViewBag.Quantity</td>
+                    <td>@string.Join(",", ViewBag.Array)</td>
+                    <td>@ViewBag.AnonymousObject.Id - @ViewBag.AnonymousObject.Name - @ViewBag.AnonymousObject.Price</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

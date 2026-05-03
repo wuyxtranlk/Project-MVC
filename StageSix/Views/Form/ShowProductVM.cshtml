@@ -1,0 +1,4 @@
+﻿@using StageSix.ViewModels.Product
+@model ProductViewModel
+<p>Name: @(Model.Name ?? "empty")</p>
+<p>Quantity: @(Model.Quantity >= 0? Model.Quantity : 0)</p>

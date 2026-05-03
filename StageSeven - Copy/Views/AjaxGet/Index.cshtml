@@ -1,0 +1,93 @@
+﻿@{
+	ViewBag.Title = "AjaxGet Index";
+}
+<h1>Đây là view index của AjaxGetController</h1>
+<p>ajax = asynchronous JavaScript and XML (gửi request lên server mà không cần request lại trang, hiện tại khi dùng ajax không còn dùng xml mà dùng json)</p>
+
+<p>Khi dùng C# sẽ chuyển object thành json cho js dùng. Và js chuyển json thành object của C# để C# sử dụng</p>
+
+<p>Khi dùng ajax thì thường không cần sử dụng thẻ form và thường dùng button có type "button", ít khi dùng button có type là "submit"</p>
+
+<button id="btnMessage" type="button">
+	Click me
+</button>
+<p id="result"></p>
+
+<button id="btnMessageJson" type="button">
+	Click me (Json)
+</button>
+<p id="resultJson"></p>
+
+<button id="btnMessageJsonAsync" type="button">
+	Click me (Json Async)
+</button>
+<p id="resultJsonAsync"></p>
+
+<input type="text" id="txtName" value="" placeholder="Enter your name..." />
+<button type="button" id="btnGetName">Enter</button>
+<button type="button" id="btnGetNameQuery">Enter (query string)</button>
+<p id="resultName"></p>
+
+@section Scripts {
+	<script>
+		document.getElementById("btnMessage").addEventListener("click", 
+		() => {
+			// (1)Gửi yêu cầu ajax đến server(đến controller và action tương ứng)
+			fetch("/AjaxGet/message")
+				.then(response => response.text()) //(2) Đọc dữ liệu trả về từ server dưới dạng text 
+				.then(data => {
+					document.getElementById("result").textContent = data;
+				}) // (3) Hiển thị dữ liệu trả về trong phần tử html có id là "result"
+				.catch(error => console.error("Error:" + error)); //(4) Xử lý lỗi nếu có lỗi xảy ra trong quá trình gửi yêu cầu hoặc nhận dữ liệu
+		});
+
+		document.getElementById("btnMessageJson").addEventListener("click", 
+		() => {
+			fetch("/AjaxGet/message-json")
+				.then(response => response.json()) // Đọc dữ liệu trả về từ server dưới dạng json
+				.then(data => {
+					document.getElementById("resultJson").textContent = data.message;
+				})
+				.catch(error => console.error("Error:" + error));
+		});
+
+		document.getElementById("btnMessageJsonAsync").addEventListener("click",
+		async () => {
+			try {
+				// (1) Gửi yêu cầu ajax đến server (đến controller và action tương ứng)
+				const response = await fetch("/AjaxGet/message-json-async");
+				// (2) Đọc dữ liệu trả về từ server dưới dạng json
+				const data = await response.json();
+				// (3) Hiển thị dữ liệu trả về trong phần tử html có id là "result"
+				document.getElementById("resultJsonAsync").textContent = data.message;
+			} catch (error) {
+				//(4) Xử lý lỗi nếu có lỗi xảy ra trong quá trình gửi yêu cầu hoặc nhận dữ liệu
+				console.error("Error:" + error);
+			}
+		});
+		document.getElementById("btnGetName").addEventListener("click",
+		async () => {
+			try {
+				// lấy từ client gửi lên server, ở đây là lấy giá trị của input có id là "txtName"
+				const name = document.getElementById("txtName").value;
+				const response = await fetch(`/AjaxGet/get-name/${encodeURIComponent(name)}`);
+				const data = await response.json();
+				document.getElementById("resultName").textContent = data.fullname;
+			} catch (error) {
+				console.error("Error:" + error);
+			}
+		});
+		document.getElementById("btnGetNameQuery").addEventListener("click",
+		async () => {
+			try {
+				// lấy từ client gửi lên server, ở đây là lấy giá trị của input có id là "txtName"
+				const name = document.getElementById("txtName").value;
+				const response = await fetch(`/AjaxGet/get-name-query?name=${encodeURIComponent(name)}`);
+				const data = await response.json();
+				document.getElementById("resultName").textContent = data.fullname + "Query";
+			} catch (error) {
+				console.error("Error:" + error);
+			}
+		});
+	</script>
+}
