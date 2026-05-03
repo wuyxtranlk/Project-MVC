@@ -36,24 +36,24 @@ public class ProductService : IProductService
     public Product? GetProductById(int id) => GetProducts().FirstOrDefault(p => p.Id == id);
     public List<Product> FilterByAnyKeyWord(string keyword) => [.. GetProducts().Where(p => typeof(Product).GetProperties().Where(prop => prop.Name != nameof(Product.Status)).Any(prop => prop.GetValue(p)?.ToString()?.Contains(keyword, StringComparison.OrdinalIgnoreCase) == true)
     )];
-    public void UpdateProduct(Product product)
+    public void AddProduct(Product p) => GetProducts().ToList().Add(p);
+    public void UpdateProduct(Product p)
     {
-        var existingProduct = GetProducts().FirstOrDefault(p => p.Id == product.Id);
+        var existingProduct = GetProducts().FirstOrDefault(p => p.Id == p.Id);
         if (existingProduct != null)
         {
-            existingProduct.Name = product.Name;
-            existingProduct.Price = product.Price;
-            existingProduct.Quantity = product.Quantity;
-            existingProduct.Status = product.Status;
-            existingProduct.Mfg = product.Mfg;
-            existingProduct.Photo = product.Photo;
+            existingProduct.Name = p.Name;
+            existingProduct.Price = p.Price;
+            existingProduct.Quantity = p.Quantity;
+            existingProduct.Status = p.Status;
+            existingProduct.Mfg = p.Mfg;
+            existingProduct.Photo = p.Photo;
         }
     }
 
-    // Xóa sản phẩm
     public void DeleteProduct(int id)
     {
-        var productToDelete = GetProducts().FirstOrDefault(p => p.Id == id);
+        var productToDelete = GetProducts().ToList().FirstOrDefault(p => p.Id == id);
         if (productToDelete != null)
         {
             GetProducts().ToList().Remove(productToDelete);

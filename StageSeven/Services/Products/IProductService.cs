@@ -7,6 +7,7 @@ public interface IProductService
     IEnumerable<Product> GetProducts();
     Product? GetProductById(int id);
     List<Product> FilterByAnyKeyWord(string keyword);
-    void UpdateProduct(Product product);
+    void AddProduct(Product p);
+    void UpdateProduct(Product p);
     void DeleteProduct(int id);
 }
