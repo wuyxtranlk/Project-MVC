@@ -15,6 +15,11 @@ public class ProductController(IProductService PS) : Controller
     public IActionResult Index() => View(PS.GetProducts());
     [Route("chi-tiet-san-pham")]
     public IActionResult Details(int id) => View(PS.GetProductById(id));
+    private bool IsLoggedIn()
+    {
+        var user = HttpContext.Session.GetString("Username");
+        return !string.IsNullOrEmpty(user) && user == "sa";
+    }
     [HttpGet("sua-san-pham")]
     public IActionResult Edit(int id)
     {

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using StageSeven.Services.Accounts;
 using System.Security.Claims;
 
+
 namespace StageSeven.Controllers;
 
 [Route("Account")]
@@ -37,36 +38,6 @@ public class AccountController(IAccountService acc) : Controller
             return RedirectToAction(nameof(Login));
         }
         ViewBag.ErrorMessage = "Invalid username or password";
-        return View();
-    }
-
-    [HttpGet("Register")]
-    public IActionResult Register()
-    {
-        if (User?.Identity?.IsAuthenticated == true)
-        {
-            TempData["ErrorMessage"] = "You are already logged in";
-            return RedirectToAction(nameof(Login));
-        }
-        return View();
-    }
-    [HttpPost("Register")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Register(string username, string password)
-    {
-        if (User?.Identity?.IsAuthenticated == true)
-        {
-            TempData["ErrorMessage"] = "You are already logged in";
-            return RedirectToAction(nameof(Login));
-        }
-
-        string result = acc.Register(username, password);
-        if (result.Contains("success"))
-        {
-            TempData["SuccessMessage"] = "Registration successful! Please log in";
-            return RedirectToAction(nameof(Login));
-        }
-        ViewBag.ErrorMessage = result;
         return View();
     }
     [HttpPost("Logout")]

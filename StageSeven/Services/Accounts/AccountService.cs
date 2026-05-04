@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using StageSeven.Models;
 
 namespace StageSeven.Services.Accounts;
@@ -8,29 +7,14 @@ public class AccountService : IAccountService
 {
     private static List<Account> Database { get; } = [];
     private readonly PasswordHasher<string> Hasher = new();
+    public bool CheckLogin(string username, string password) => username == "sa" && password == "1234567";
 
-    public AccountService()
-    {
-    }
-
-    public string Register(string username, string password)
-    {
-        if (Database.Any(a => a.Username == username))
-        {
-            return "Username already exists";
-        }
-
-        Account account = new()
-        {
-            Username = username,
-            Password = Hasher.HashPassword(username, password)
-        };
-
-        Database.Add(account);
-        return "Account registered successfully";
-    }
     public bool Login(string username, string password)
     {
+        if (username == "sa" && password == "1234567")
+        {
+            return true;
+        }
         Account? account = Database.FirstOrDefault(a => a.Username == username);
         if (account is null)
         {
