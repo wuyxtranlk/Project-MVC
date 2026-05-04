@@ -8,9 +8,6 @@
 		@TempData["SuccessMessage"]
 	</div>
 }
-@* @{
-	var username = Context.Session.GetString("Username");
-}  *@
 @if (User?.Identity?.IsAuthenticated == true)
 {
 	<div>Welcome back! <b>@User.Identity.Name</b>!</div>

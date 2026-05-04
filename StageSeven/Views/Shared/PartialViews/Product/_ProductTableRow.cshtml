@@ -8,6 +8,10 @@
 	<td>
 		<a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id">Xem chi tiết</a> |
 		<a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id">Chỉnh sửa</a> |
-		<a asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id">Xóa</a>
+		<a href="@Url.Action("Delete", "Product", new { id = @Model.Id })"
+			   class="btn btn-sm btn-danger"
+			   onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
+			Xóa
+		</a>
 	</td>
 </tr>

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StageSeven.Services.Accounts;
-using System.Security.Claims;
 
 
 namespace StageSeven.Controllers;
@@ -14,30 +13,22 @@ public class AccountController(IAccountService acc) : Controller
 {
     [Route("Login")]
     [Route("")]
-    //[HttpGet("~/")]
+    [HttpGet("~/")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Login() => View();
 
     [HttpPost("Login")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Login(string username, string password)
+    [HttpPost]
+    public IActionResult Login(string username, string password)
     {
+
         if (acc.Login(username, password))
         {
-            List<Claim> claims = new()
-            {
-                new Claim(ClaimTypes.Name, username),
-                new Claim(ClaimTypes.Role,
-                    username.Equals("admin", StringComparison.OrdinalIgnoreCase) ? "Admin" : "User"
-                )
-            };
-            ClaimsIdentity identity = new(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            ClaimsPrincipal principal = new(identity);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-            TempData["SuccessMessage"] = "Login successful";
-            return RedirectToAction(nameof(Login));
+            HttpContext.Session.SetString("Username", username);
+            return RedirectToAction("Index", "Product");
         }
-        ViewBag.ErrorMessage = "Invalid username or password";
+        ViewBag.Error = "Tên đăng nhập hoặc mật khẩu không đúng!";
         return View();
     }
     [HttpPost("Logout")]

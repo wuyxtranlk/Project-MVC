@@ -10,15 +10,36 @@ public class ProductController(IProductService PS) : Controller
 {
     [Route("danh-sach")]
     [Route("")]
-    [HttpGet("~/")]
+    //[HttpGet("~/")]
 
-    public IActionResult Index() => View(PS.GetProducts());
+    public IActionResult Index()
+    {
+        if (!IsLoggedIn())
+        {
+            return RedirectToAction("Login", "Account");
+        }
+        var listProducts = PS.GetProducts();
+        return View(listProducts);
+    }
     [Route("chi-tiet-san-pham")]
     public IActionResult Details(int id) => View(PS.GetProductById(id));
     private bool IsLoggedIn()
     {
         var user = HttpContext.Session.GetString("Username");
         return !string.IsNullOrEmpty(user) && user == "sa";
+    }
+    public IActionResult Add() => !IsLoggedIn() ? RedirectToAction("Login", "Account") : View();
+
+    [HttpPost]
+    public IActionResult Add(Product addProduct)
+    {
+        if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
+        if (ModelState.IsValid)
+        {
+            PS.AddProduct(addProduct);
+            return RedirectToAction("Index");
+        }
+        return View(addProduct);
     }
     [HttpGet("sua-san-pham")]
     public IActionResult Edit(int id)
@@ -39,19 +60,11 @@ public class ProductController(IProductService PS) : Controller
     [HttpGet("xoa-san-pham")]
     public IActionResult Delete(int id)
     {
-        var product = PS.GetProductById(id);
-        return product == null ? NotFound() : View(product);
-    }
-    [HttpPost("xoa-san-pham")]
-    public IActionResult DeleteConfirmed(int id)
-    {
-        var product = PS.GetProductById(id);
-        if (product == null)
-        {
-            return NotFound();
-        }
+        if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
+
         PS.DeleteProduct(id);
-        return RedirectToAction(nameof(Index));
+
+        return RedirectToAction("Index");
     }
 
     [HttpGet("tim-kiem")]
